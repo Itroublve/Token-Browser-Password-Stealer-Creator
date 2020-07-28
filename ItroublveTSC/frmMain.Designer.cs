@@ -1,19 +1,20 @@
 ﻿namespace ItroublveTSC
 {
-    public partial class frmMain : global::System.Windows.Forms.Form
-    {
-        protected override void Dispose(bool disposing)
-        {
-            bool flag = disposing && this.components != null;
-            if (flag)
-            {
-                this.components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+	public partial class frmMain : global::System.Windows.Forms.Form
+	{
+		protected override void Dispose(bool disposing)
+		{
+			bool flag = disposing && this.components != null;
+			bool flag2 = flag;
+			if (flag2)
+			{
+				this.components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        private void InitializeComponent()
-        {
+		private void InitializeComponent()
+		{
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.RainbowTimer = new System.Windows.Forms.Timer(this.components);
@@ -45,7 +46,21 @@
             this.RestartPCchkbox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.CustomExeTxt = new System.Windows.Forms.TextBox();
-            this.roundBtn1 = new RoundBtn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.AssemblyCopyrTxt = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.AssemblyProdTxt = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.AssemblyDescTxt = new System.Windows.Forms.TextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.AssemblyTitleTxt = new System.Windows.Forms.TextBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.AssemblyFileVTxt = new System.Windows.Forms.TextBox();
+            this.IconPrePic = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.MsgBoxBtn = new RoundBtn();
+            this.CstmIcon = new RoundBtn();
+            this.HowToBtn = new RoundBtn();
             this.CreateTokenStealerBtn = new RoundBtn();
             this.CreateSendhookfileBtn = new RoundBtn();
             this.HeadLinePnlInf.SuspendLayout();
@@ -54,6 +69,13 @@
             this.SendhookfilePnl.SuspendLayout();
             this.CheckboxPnl.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IconPrePic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // RainbowTimer
@@ -76,15 +98,15 @@
             this.HeadLinePnlInf.Dock = System.Windows.Forms.DockStyle.Top;
             this.HeadLinePnlInf.Location = new System.Drawing.Point(0, 0);
             this.HeadLinePnlInf.Name = "HeadLinePnlInf";
-            this.HeadLinePnlInf.Size = new System.Drawing.Size(421, 27);
+            this.HeadLinePnlInf.Size = new System.Drawing.Size(871, 27);
             this.HeadLinePnlInf.TabIndex = 6306;
             // 
             // pnlRainbowTop
             // 
             this.pnlRainbowTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.pnlRainbowTop.Location = new System.Drawing.Point(12, 24);
+            this.pnlRainbowTop.Location = new System.Drawing.Point(0, 25);
             this.pnlRainbowTop.Name = "pnlRainbowTop";
-            this.pnlRainbowTop.Size = new System.Drawing.Size(396, 2);
+            this.pnlRainbowTop.Size = new System.Drawing.Size(3814, 2);
             this.pnlRainbowTop.TabIndex = 6222;
             // 
             // CloseBtn
@@ -97,7 +119,7 @@
             this.CloseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloseBtn.Font = new System.Drawing.Font("Webdings", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.CloseBtn.ForeColor = System.Drawing.Color.White;
-            this.CloseBtn.Location = new System.Drawing.Point(395, -1);
+            this.CloseBtn.Location = new System.Drawing.Point(845, -1);
             this.CloseBtn.Name = "CloseBtn";
             this.CloseBtn.Size = new System.Drawing.Size(26, 25);
             this.CloseBtn.TabIndex = 6167;
@@ -111,7 +133,7 @@
             this.HeadServerLbl.AutoSize = true;
             this.HeadServerLbl.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HeadServerLbl.ForeColor = System.Drawing.Color.White;
-            this.HeadServerLbl.Location = new System.Drawing.Point(154, 3);
+            this.HeadServerLbl.Location = new System.Drawing.Point(378, 3);
             this.HeadServerLbl.Name = "HeadServerLbl";
             this.HeadServerLbl.Size = new System.Drawing.Size(108, 21);
             this.HeadServerLbl.TabIndex = 6166;
@@ -222,7 +244,9 @@
             this.WebHookTxt.Name = "WebHookTxt";
             this.WebHookTxt.Size = new System.Drawing.Size(379, 18);
             this.WebHookTxt.TabIndex = 6153;
-            this.WebHookTxt.Text = "WebHook Here";
+            this.WebHookTxt.Text = "Webhook Here";
+            this.WebHookTxt.Enter += new System.EventHandler(this.WebHookTxt_Enter);
+            this.WebHookTxt.Leave += new System.EventHandler(this.WebHookTxt_Leave);
             // 
             // WinInfo
             // 
@@ -249,6 +273,8 @@
             this.FinalresbatTxt.Size = new System.Drawing.Size(379, 18);
             this.FinalresbatTxt.TabIndex = 6153;
             this.FinalresbatTxt.Text = "Token Stealer.bat Link Here";
+            this.FinalresbatTxt.Enter += new System.EventHandler(this.FinalresbatTxt_Enter);
+            this.FinalresbatTxt.Leave += new System.EventHandler(this.FinalresbatTxt_Leave);
             // 
             // SendhookfilePnl
             // 
@@ -270,6 +296,8 @@
             this.SendhookfileTxt.Size = new System.Drawing.Size(379, 18);
             this.SendhookfileTxt.TabIndex = 6153;
             this.SendhookfileTxt.Text = "Sendhookfile.exe Link Here";
+            this.SendhookfileTxt.Enter += new System.EventHandler(this.SendhookfileTxt_Enter);
+            this.SendhookfileTxt.Leave += new System.EventHandler(this.SendhookfileTxt_Leave);
             // 
             // CrashPCchkbox
             // 
@@ -312,16 +340,15 @@
             // 
             // BootloopPCchckbox
             // 
-            this.BootloopPCchckbox.AccessibleName = "BootloopPCchkbox";
+            this.BootloopPCchckbox.AccessibleName = "RestartDiscordchkbox";
             this.BootloopPCchckbox.AutoSize = true;
             this.BootloopPCchckbox.ForeColor = System.Drawing.SystemColors.Window;
             this.BootloopPCchckbox.Location = new System.Drawing.Point(10, 77);
             this.BootloopPCchckbox.Name = "BootloopPCchckbox";
-            this.BootloopPCchckbox.Size = new System.Drawing.Size(85, 17);
+            this.BootloopPCchckbox.Size = new System.Drawing.Size(99, 17);
             this.BootloopPCchckbox.TabIndex = 6333;
-            this.BootloopPCchckbox.Text = "Bootloop PC";
+            this.BootloopPCchckbox.Text = "Restart Discord";
             this.BootloopPCchckbox.UseVisualStyleBackColor = true;
-            this.BootloopPCchckbox.CheckedChanged += new System.EventHandler(this.BootloopPCchckbox_CheckedChanged);
             // 
             // AutoRmvExe
             // 
@@ -380,28 +407,210 @@
             this.CustomExeTxt.Size = new System.Drawing.Size(379, 18);
             this.CustomExeTxt.TabIndex = 6153;
             this.CustomExeTxt.Text = "Custom EXE Link Here";
+            this.CustomExeTxt.Enter += new System.EventHandler(this.CustomExeTxt_Enter);
+            this.CustomExeTxt.Leave += new System.EventHandler(this.CustomExeTxt_Leave);
             // 
-            // roundBtn1
+            // panel2
             // 
-            this.roundBtn1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(205)))));
-            this.roundBtn1.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(205)))));
-            this.roundBtn1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
-            this.roundBtn1.FlatAppearance.BorderSize = 0;
-            this.roundBtn1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
-            this.roundBtn1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
-            this.roundBtn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.roundBtn1.Font = new System.Drawing.Font("Segoe UI Black", 13F, System.Drawing.FontStyle.Bold);
-            this.roundBtn1.Location = new System.Drawing.Point(274, 232);
-            this.roundBtn1.Name = "roundBtn1";
-            this.roundBtn1.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(99)))), ((int)(((byte)(180)))));
-            this.roundBtn1.OnHoverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(99)))), ((int)(((byte)(180)))));
-            this.roundBtn1.OnHoverTextColor = System.Drawing.Color.White;
-            this.roundBtn1.Size = new System.Drawing.Size(133, 132);
-            this.roundBtn1.TabIndex = 6330;
-            this.roundBtn1.Text = "How To Use?";
-            this.roundBtn1.TextColor = System.Drawing.Color.White;
-            this.roundBtn1.UseVisualStyleBackColor = true;
-            this.roundBtn1.Click += new System.EventHandler(this.roundBtn1_Click_1);
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.panel2.Controls.Add(this.AssemblyCopyrTxt);
+            this.panel2.Location = new System.Drawing.Point(458, 185);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(395, 32);
+            this.panel2.TabIndex = 6335;
+            // 
+            // AssemblyCopyrTxt
+            // 
+            this.AssemblyCopyrTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.AssemblyCopyrTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.AssemblyCopyrTxt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AssemblyCopyrTxt.ForeColor = System.Drawing.Color.DarkGray;
+            this.AssemblyCopyrTxt.Location = new System.Drawing.Point(7, 7);
+            this.AssemblyCopyrTxt.Name = "AssemblyCopyrTxt";
+            this.AssemblyCopyrTxt.Size = new System.Drawing.Size(379, 18);
+            this.AssemblyCopyrTxt.TabIndex = 6153;
+            this.AssemblyCopyrTxt.Text = "Assembly © Copyright";
+            this.AssemblyCopyrTxt.Enter += new System.EventHandler(this.AssemblyCopyrTxt_Enter);
+            this.AssemblyCopyrTxt.Leave += new System.EventHandler(this.AssemblyCopyrTxt_Leave);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.panel3.Controls.Add(this.AssemblyProdTxt);
+            this.panel3.Location = new System.Drawing.Point(458, 139);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(395, 32);
+            this.panel3.TabIndex = 6334;
+            // 
+            // AssemblyProdTxt
+            // 
+            this.AssemblyProdTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.AssemblyProdTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.AssemblyProdTxt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AssemblyProdTxt.ForeColor = System.Drawing.Color.DarkGray;
+            this.AssemblyProdTxt.Location = new System.Drawing.Point(7, 7);
+            this.AssemblyProdTxt.Name = "AssemblyProdTxt";
+            this.AssemblyProdTxt.Size = new System.Drawing.Size(379, 18);
+            this.AssemblyProdTxt.TabIndex = 6153;
+            this.AssemblyProdTxt.Text = "Assembly Product Here";
+            this.AssemblyProdTxt.Enter += new System.EventHandler(this.AssemblyProdTxt_Enter);
+            this.AssemblyProdTxt.Leave += new System.EventHandler(this.AssemblyProdTxt_Leave);
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.panel4.Controls.Add(this.AssemblyDescTxt);
+            this.panel4.Location = new System.Drawing.Point(458, 92);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(395, 33);
+            this.panel4.TabIndex = 6333;
+            // 
+            // AssemblyDescTxt
+            // 
+            this.AssemblyDescTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.AssemblyDescTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.AssemblyDescTxt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AssemblyDescTxt.ForeColor = System.Drawing.Color.DarkGray;
+            this.AssemblyDescTxt.Location = new System.Drawing.Point(7, 7);
+            this.AssemblyDescTxt.Name = "AssemblyDescTxt";
+            this.AssemblyDescTxt.Size = new System.Drawing.Size(379, 18);
+            this.AssemblyDescTxt.TabIndex = 6153;
+            this.AssemblyDescTxt.Text = "Assembly Description Here";
+            this.AssemblyDescTxt.Enter += new System.EventHandler(this.AssemblyDescTxt_Enter);
+            this.AssemblyDescTxt.Leave += new System.EventHandler(this.AssemblyDescTxt_Leave);
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.panel5.Controls.Add(this.AssemblyTitleTxt);
+            this.panel5.Location = new System.Drawing.Point(459, 47);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(395, 33);
+            this.panel5.TabIndex = 6332;
+            // 
+            // AssemblyTitleTxt
+            // 
+            this.AssemblyTitleTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.AssemblyTitleTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.AssemblyTitleTxt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AssemblyTitleTxt.ForeColor = System.Drawing.Color.DarkGray;
+            this.AssemblyTitleTxt.Location = new System.Drawing.Point(7, 7);
+            this.AssemblyTitleTxt.Name = "AssemblyTitleTxt";
+            this.AssemblyTitleTxt.Size = new System.Drawing.Size(379, 18);
+            this.AssemblyTitleTxt.TabIndex = 6153;
+            this.AssemblyTitleTxt.Text = "Assembly Title Here";
+            this.AssemblyTitleTxt.Enter += new System.EventHandler(this.AssemblyTitleTxt_Enter);
+            this.AssemblyTitleTxt.Leave += new System.EventHandler(this.AssemblyTitleTxt_Leave);
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.panel6.Controls.Add(this.AssemblyFileVTxt);
+            this.panel6.Location = new System.Drawing.Point(459, 232);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(197, 32);
+            this.panel6.TabIndex = 6337;
+            // 
+            // AssemblyFileVTxt
+            // 
+            this.AssemblyFileVTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.AssemblyFileVTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.AssemblyFileVTxt.Enabled = false;
+            this.AssemblyFileVTxt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AssemblyFileVTxt.ForeColor = System.Drawing.Color.DarkGray;
+            this.AssemblyFileVTxt.Location = new System.Drawing.Point(7, 7);
+            this.AssemblyFileVTxt.Name = "AssemblyFileVTxt";
+            this.AssemblyFileVTxt.Size = new System.Drawing.Size(185, 18);
+            this.AssemblyFileVTxt.TabIndex = 6153;
+            this.AssemblyFileVTxt.Text = "File Version";
+            // 
+            // IconPrePic
+            // 
+            this.IconPrePic.BackColor = System.Drawing.Color.Transparent;
+            this.IconPrePic.Location = new System.Drawing.Point(698, 240);
+            this.IconPrePic.MinimumSize = new System.Drawing.Size(155, 116);
+            this.IconPrePic.Name = "IconPrePic";
+            this.IconPrePic.Size = new System.Drawing.Size(155, 123);
+            this.IconPrePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.IconPrePic.TabIndex = 6338;
+            this.IconPrePic.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.GrayText;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.No;
+            this.pictureBox1.Location = new System.Drawing.Point(692, 232);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(167, 138);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 6339;
+            this.pictureBox1.TabStop = false;
+            // 
+            // MsgBoxBtn
+            // 
+            this.MsgBoxBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(205)))));
+            this.MsgBoxBtn.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(205)))));
+            this.MsgBoxBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
+            this.MsgBoxBtn.FlatAppearance.BorderSize = 0;
+            this.MsgBoxBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
+            this.MsgBoxBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
+            this.MsgBoxBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MsgBoxBtn.Font = new System.Drawing.Font("Segoe UI Black", 8.25F, System.Drawing.FontStyle.Bold);
+            this.MsgBoxBtn.Location = new System.Drawing.Point(466, 385);
+            this.MsgBoxBtn.Name = "MsgBoxBtn";
+            this.MsgBoxBtn.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(99)))), ((int)(((byte)(180)))));
+            this.MsgBoxBtn.OnHoverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(99)))), ((int)(((byte)(180)))));
+            this.MsgBoxBtn.OnHoverTextColor = System.Drawing.Color.White;
+            this.MsgBoxBtn.Size = new System.Drawing.Size(158, 27);
+            this.MsgBoxBtn.TabIndex = 6340;
+            this.MsgBoxBtn.Text = "MESSAGEBOX";
+            this.MsgBoxBtn.TextColor = System.Drawing.Color.White;
+            this.MsgBoxBtn.UseVisualStyleBackColor = true;
+            this.MsgBoxBtn.Click += new System.EventHandler(this.roundBtn3_Click);
+            // 
+            // CstmIcon
+            // 
+            this.CstmIcon.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(205)))));
+            this.CstmIcon.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(205)))));
+            this.CstmIcon.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
+            this.CstmIcon.FlatAppearance.BorderSize = 0;
+            this.CstmIcon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
+            this.CstmIcon.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
+            this.CstmIcon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CstmIcon.Font = new System.Drawing.Font("Segoe UI Black", 8.25F, System.Drawing.FontStyle.Bold);
+            this.CstmIcon.Location = new System.Drawing.Point(698, 385);
+            this.CstmIcon.Name = "CstmIcon";
+            this.CstmIcon.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(99)))), ((int)(((byte)(180)))));
+            this.CstmIcon.OnHoverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(99)))), ((int)(((byte)(180)))));
+            this.CstmIcon.OnHoverTextColor = System.Drawing.Color.White;
+            this.CstmIcon.Size = new System.Drawing.Size(155, 27);
+            this.CstmIcon.TabIndex = 6336;
+            this.CstmIcon.Text = "ADD CUSTOM ICON";
+            this.CstmIcon.TextColor = System.Drawing.Color.White;
+            this.CstmIcon.UseVisualStyleBackColor = true;
+            this.CstmIcon.Click += new System.EventHandler(this.roundBtn2_Click);
+            // 
+            // HowToBtn
+            // 
+            this.HowToBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(205)))));
+            this.HowToBtn.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(205)))));
+            this.HowToBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
+            this.HowToBtn.FlatAppearance.BorderSize = 0;
+            this.HowToBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
+            this.HowToBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
+            this.HowToBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HowToBtn.Font = new System.Drawing.Font("Segoe UI Black", 13F, System.Drawing.FontStyle.Bold);
+            this.HowToBtn.Location = new System.Drawing.Point(274, 232);
+            this.HowToBtn.Name = "HowToBtn";
+            this.HowToBtn.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(99)))), ((int)(((byte)(180)))));
+            this.HowToBtn.OnHoverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(99)))), ((int)(((byte)(180)))));
+            this.HowToBtn.OnHoverTextColor = System.Drawing.Color.White;
+            this.HowToBtn.Size = new System.Drawing.Size(133, 132);
+            this.HowToBtn.TabIndex = 6330;
+            this.HowToBtn.Text = "How To Use?";
+            this.HowToBtn.TextColor = System.Drawing.Color.White;
+            this.HowToBtn.UseVisualStyleBackColor = true;
+            this.HowToBtn.Click += new System.EventHandler(this.roundBtn1_Click_1);
             // 
             // CreateTokenStealerBtn
             // 
@@ -452,9 +661,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
-            this.ClientSize = new System.Drawing.Size(421, 444);
+            this.ClientSize = new System.Drawing.Size(871, 444);
+            this.Controls.Add(this.MsgBoxBtn);
+            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.CstmIcon);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.roundBtn1);
+            this.Controls.Add(this.HowToBtn);
             this.Controls.Add(this.CheckboxPnl);
             this.Controls.Add(this.CreateTokenStealerBtn);
             this.Controls.Add(this.SendhookfilePnl);
@@ -463,6 +679,8 @@
             this.Controls.Add(this.WebhookPnl);
             this.Controls.Add(this.PnlRainbowDown);
             this.Controls.Add(this.HeadLinePnlInf);
+            this.Controls.Add(this.IconPrePic);
+            this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMain";
@@ -481,59 +699,113 @@
             this.CheckboxPnl.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IconPrePic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
-        }
+		}
 
-        private global::System.ComponentModel.IContainer components = null;
+		private global::System.ComponentModel.IContainer components = null;
 
-        private global::System.Windows.Forms.Timer RainbowTimer;
+		private global::System.Windows.Forms.Timer RainbowTimer;
 
-        private global::System.Windows.Forms.Panel HeadLinePnlInf;
+		private global::System.Windows.Forms.Panel HeadLinePnlInf;
 
-        private global::System.Windows.Forms.Panel pnlRainbowTop;
+		private global::System.Windows.Forms.Panel pnlRainbowTop;
 
-        private global::System.Windows.Forms.Button CloseBtn;
+		private global::System.Windows.Forms.Button CloseBtn;
 
-        private global::System.Windows.Forms.Label HeadServerLbl;
+		private global::System.Windows.Forms.Label HeadServerLbl;
 
-        private global::System.Windows.Forms.Panel panel25;
+		private global::System.Windows.Forms.Panel panel25;
 
-        private global::System.Windows.Forms.ComboBox comboBox3;
+		private global::System.Windows.Forms.ComboBox comboBox3;
 
-        private global::System.Windows.Forms.TextBox textBox3;
+		private global::System.Windows.Forms.TextBox textBox3;
 
-        private global::System.Windows.Forms.Button button4;
+		private global::System.Windows.Forms.Button button4;
 
-        private global::System.Windows.Forms.Panel panel26;
+		private global::System.Windows.Forms.Panel panel26;
 
-        private global::System.Windows.Forms.Panel panel27;
+		private global::System.Windows.Forms.Panel panel27;
 
-        private global::System.Windows.Forms.Panel panel36;
+		private global::System.Windows.Forms.Panel panel36;
 
-        private global::System.Windows.Forms.Panel PnlRainbowDown;
+		private global::System.Windows.Forms.Panel PnlRainbowDown;
 
-        private global::System.Windows.Forms.Panel WebhookPnl;
+		private global::System.Windows.Forms.Panel WebhookPnl;
 
-        private global::System.Windows.Forms.TextBox WebHookTxt;
+		private global::System.Windows.Forms.TextBox WebHookTxt;
 
-        private global::RoundBtn CreateSendhookfileBtn;
+		private global::RoundBtn CreateSendhookfileBtn;
 
-        private global::System.Windows.Forms.NotifyIcon WinInfo;
-        private System.Windows.Forms.Panel FinalresbatPnl;
-        private System.Windows.Forms.TextBox FinalresbatTxt;
-        private System.Windows.Forms.Panel SendhookfilePnl;
-        private System.Windows.Forms.TextBox SendhookfileTxt;
-        private RoundBtn CreateTokenStealerBtn;
-        private System.Windows.Forms.CheckBox CrashPCchkbox;
-        private System.Windows.Forms.Panel CheckboxPnl;
-        private RoundBtn roundBtn1;
-        private System.Windows.Forms.CheckBox RestartPCchkbox;
-        private System.Windows.Forms.CheckBox BootloopPCchckbox;
-        private System.Windows.Forms.CheckBox AutoRmvExe;
-        private System.Windows.Forms.CheckBox ShutdownPCchkbox;
-        private System.Windows.Forms.CheckBox CustomEXEchkbox;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox CustomExeTxt;
+		private global::System.Windows.Forms.NotifyIcon WinInfo;
+
+		private global::System.Windows.Forms.Panel FinalresbatPnl;
+
+		private global::System.Windows.Forms.TextBox FinalresbatTxt;
+
+		private global::System.Windows.Forms.Panel SendhookfilePnl;
+
+		private global::System.Windows.Forms.TextBox SendhookfileTxt;
+
+		private global::RoundBtn CreateTokenStealerBtn;
+
+		private global::System.Windows.Forms.CheckBox CrashPCchkbox;
+
+		private global::System.Windows.Forms.Panel CheckboxPnl;
+
+		private global::RoundBtn HowToBtn;
+
+		private global::System.Windows.Forms.CheckBox RestartPCchkbox;
+
+		private global::System.Windows.Forms.CheckBox BootloopPCchckbox;
+
+		private global::System.Windows.Forms.CheckBox AutoRmvExe;
+
+		private global::System.Windows.Forms.CheckBox ShutdownPCchkbox;
+
+		private global::System.Windows.Forms.CheckBox CustomEXEchkbox;
+
+		private global::System.Windows.Forms.Panel panel1;
+
+		private global::System.Windows.Forms.TextBox CustomExeTxt;
+
+		private global::System.Windows.Forms.Panel panel2;
+
+		private global::System.Windows.Forms.TextBox AssemblyCopyrTxt;
+
+		private global::System.Windows.Forms.Panel panel3;
+
+		private global::System.Windows.Forms.TextBox AssemblyProdTxt;
+
+        private global::System.Windows.Forms.Panel panel4;
+
+		private global::System.Windows.Forms.TextBox AssemblyDescTxt;
+
+		private global::System.Windows.Forms.Panel panel5;
+
+		private global::System.Windows.Forms.TextBox AssemblyTitleTxt;
+
+		private global::RoundBtn CstmIcon;
+
+		private global::System.Windows.Forms.Panel panel6;
+
+		private global::System.Windows.Forms.TextBox AssemblyFileVTxt;
+
+		private global::System.Windows.Forms.PictureBox IconPrePic;
+
+		private global::System.Windows.Forms.PictureBox pictureBox1;
+        private RoundBtn MsgBoxBtn;
     }
 }

