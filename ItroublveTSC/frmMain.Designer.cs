@@ -607,7 +607,7 @@
             this.HowToBtn.OnHoverTextColor = System.Drawing.Color.White;
             this.HowToBtn.Size = new System.Drawing.Size(133, 132);
             this.HowToBtn.TabIndex = 6330;
-            this.HowToBtn.Text = "How To Use?";
+            this.HowToBtn.Text = "Information";
             this.HowToBtn.TextColor = System.Drawing.Color.White;
             this.HowToBtn.UseVisualStyleBackColor = true;
             this.HowToBtn.Click += new System.EventHandler(this.roundBtn1_Click_1);

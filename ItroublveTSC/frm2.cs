@@ -13,7 +13,8 @@ namespace ItroublveTSC2
 {
 	public partial class frm2 : Form
 	{
-		public frm2()
+        #region GUI
+        public frm2()
 		{
 			this.InitializeComponent();
 			this.RainbowTimer.Start();
@@ -29,15 +30,15 @@ namespace ItroublveTSC2
 		private void frm2_Load(object sender, EventArgs e)
 		{
 		}
-
-		private void CloseBtn_Click(object sender, EventArgs e)
+        #region ClsBtn
+        private void CloseBtn_Click(object sender, EventArgs e)
 		{
 			frm2 f = new frm2();
 			f.Close();
 			this.Close();
 		}
-
-		private void HeadServerLbl_MouseDown(object sender, MouseEventArgs e)
+        #endregion
+        private void HeadServerLbl_MouseDown(object sender, MouseEventArgs e)
 		{
 			Mouse.x = Control.MousePosition.X - base.Location.X;
 			Mouse.y = Control.MousePosition.Y - base.Location.Y;
@@ -54,7 +55,8 @@ namespace ItroublveTSC2
 				base.Location = Mouse.newpoint;
 			}
 		}
-
+        #endregion
+        #region Compile chng
         private void roundBtn1_Click(object sender, EventArgs e)
         {
 			bool flag = this.MessageTitleTxt.Text == "" || this.MessageTitleTxt.Text == "Title";
@@ -90,7 +92,8 @@ namespace ItroublveTSC2
 			f.Close();
 			this.Close();
 		}
-
+        #endregion
+        #region Placeholder
         private void MessageTitleTxt_Enter(object sender, EventArgs e)
         {
 			if (MessageTitleTxt.Text == "Title")
@@ -122,5 +125,6 @@ namespace ItroublveTSC2
 				MessageTitleTxt.Text = "Your Error";
 			}
 		}
+        #endregion
     }
 }
