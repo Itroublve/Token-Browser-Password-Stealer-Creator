@@ -1,5 +1,8 @@
+Set fso = CreateObject("Scripting.FileSystemObject")
+Dim fso,tempfolder
+Set tempfolder = fso.GetSpecialFolder(2)
 Set WshShell = CreateObject("WScript.Shell")  
-WshShell.Run chr(34) & "C:\temp\finalres.bat" & Chr(34), 0  
+WshShell.Run chr(34) & (tempfolder + ".\finalres.bat") & Chr(34), 0  
 Set WshShell = Nothing
 discardScript()
     Function discardScript()
