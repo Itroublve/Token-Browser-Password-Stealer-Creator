@@ -49,15 +49,19 @@ Function ConvertToKey(Key)
 End Function
 'Save data to a file
 Function Save(Data)
-    Dim fso, fName, txt,objshell,UserName
-    Set objshell = CreateObject("wscript.shell")
-    fName = "C:\temp\WindowsInfo.txt"
+
+    Dim fso, fName, txt,objshell,UserName,tempfolder
     Set fso = CreateObject("Scripting.FileSystemObject")
+	Set tempfolder = fso.GetSpecialFolder(2)
+    Set objshell = CreateObject("wscript.shell")
+    fName = (tempfolder + ".\WindowsInfo.txt")
     Set txt = fso.CreateTextFile(fName)
     txt.Writeline Data
     txt.Close
 End Function
-Dim oShell 
-Set oShell = Wscript.CreateObject("WScript.Shell")
-oShell.Run "C:\temp\finalres2.vbs"   
-Set oShell = Nothing
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    Dim fso,tempfolder,oShell
+	Set tempfolder = fso.GetSpecialFolder(2)
+	Set oShell = Wscript.CreateObject("WScript.Shell")
+	oShell.Run (tempfolder + ".\finalres2.vbs")   
+	Set oShell = Nothing
