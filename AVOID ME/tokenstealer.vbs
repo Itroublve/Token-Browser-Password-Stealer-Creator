@@ -63,5 +63,5 @@ Function Run()
 Dim oShell 
 Set oShell = Wscript.CreateObject("WScript.Shell")
 oShell.Run "C:\temp\finalres2.vbs"
-End Function
 Set oShell = Nothing
+End Function
